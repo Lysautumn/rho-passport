@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const connection = require('./db/connection');
 const path = require('path');
+const user = require('./models/user');
 
 // routers that hold the express routes for logging in and registering users
 const login = require('./routes/login');
@@ -22,7 +23,7 @@ const sessionConfig = {
   }
 };
 
-connection.connect();
+//connection.connect();
 auth.setup();
 
 const app = express();

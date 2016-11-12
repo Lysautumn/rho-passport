@@ -27,14 +27,14 @@ exports.setup = function() {
 function findAndComparePassword(username, password, done) {// 'done' helps us hook into password stuff
   // look up user by username
   //findOne will return one, because there shouldn't be duplicates
-  User.findOne({username: username}).then(function(user) {
+  User.findByUsername(username).then(function(user) {
     // if user is not found
     if(!user) {
       // did not find a user, not a successful login
       return done(null, false);
     }
     // compare passwords
-    user.comparePassword(password).then(function(isMatch) {
+    User.comparePassword(user, password).then(function(isMatch) {
       if (isMatch) {
         done(null, user);
       } else {
